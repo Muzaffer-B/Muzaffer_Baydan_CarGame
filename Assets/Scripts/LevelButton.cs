@@ -63,19 +63,13 @@ public class LevelButton : MonoBehaviour
         {
             if(PlayerPrefs.GetInt("Opened Level",-1) == level -1 && PlayerPrefs.GetString("LevelStatus") == "LevelComplete")
             {
-                //buttonImage.sprite = lockedSprite;
-                //myButton.enabled = false;
-                //levelText.enabled = false;
-                //Debug.Log("Animation baþlýyor");
+                
                 onParticleStart?.Invoke();
 
                 PlayerPrefs.DeleteKey("LevelStatus");
                 gameObject.GetComponent<Animator>().enabled = true;
-                //myButton.enabled = true;
-                //levelText.enabled = true;
-                //buttonImage.sprite = activeSprite;
+               
                 Invoke("CloseAnimation", 2);
-                //Debug.Log("Animation bitti");
 
             }
             else

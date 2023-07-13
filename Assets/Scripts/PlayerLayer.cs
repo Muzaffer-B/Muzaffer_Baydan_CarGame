@@ -12,7 +12,7 @@ public class PlayerLayer : MonoBehaviour
     public static Action onObstacleTouched;
 
     public static Action onAnimationReset;
-
+    VibraitonManager vibraitonManager;
     public GameObject playerPrefab; 
     [SerializeField] private Transform entranceTransfrom;
     Animator anim;
@@ -22,6 +22,7 @@ public class PlayerLayer : MonoBehaviour
         entranceTransfrom = GameObject.FindGameObjectWithTag("Entrance").transform;
         this.gameObject.transform.position = entranceTransfrom.position;
         anim = this.gameObject.GetComponent<Animator>();
+        vibraitonManager = FindObjectOfType<VibraitonManager>();
     }
 
 
@@ -84,9 +85,9 @@ public class PlayerLayer : MonoBehaviour
                 if (GameManager.instance.IsGameState())
                 {
                     this.gameObject.transform.position = entranceTransfrom.position;
+                    vibraitonManager.Vibrate();
                     onObstacleTouched?.Invoke();
                     onAnimationReset?.Invoke();
-
                 }
 
             }
@@ -95,17 +96,6 @@ public class PlayerLayer : MonoBehaviour
 
     }
 
- 
-    //private void Animator()
-    //{
-    //    PlayerContoller[] obj = FindObjectsOfType<PlayerContoller>();
-    //    for (int i = 0; i < obj.Length -1; i++)
-    //    {
-    //        Debug.Log("obje ad�: " + obj[i].name);
-
-    //        obj[i].GetComponent<Animator>().Play("Player"+(i+1));
-    //    }
-    //}
 
     private int GetPlayersCount()
     {

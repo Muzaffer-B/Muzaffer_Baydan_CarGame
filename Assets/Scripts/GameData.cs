@@ -29,10 +29,7 @@ public class GameData : MonoBehaviour
         {
             Destroy(this.gameObject);
         }
-        //if (!File.Exists(Application.persistentDataPath + "/player.dat"))
-        //{
-        //    Save();
-        //}
+       
         Load();
     }
 

@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: Level 1
   m_EditorClassIdentifier: 
   Obstacles: {fileID: 16030092146473500, guid: e423ac3b42865c74b81b55eaa2959eb1, type: 3}
-  obstacleCount: 3
+  obstacleCount: 8

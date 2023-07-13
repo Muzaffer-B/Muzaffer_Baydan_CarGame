@@ -15,7 +15,6 @@ public class GameManager : MonoBehaviour
     public AnimationClip[] animation;
     public World world;
     int playersCount;
-    int playerIncrease;
     int levelstatus;
     GameData gameData;
     public GameState currentState = GameState.Move;
@@ -33,6 +32,7 @@ public class GameManager : MonoBehaviour
         if (world != null)
         {
              levelstatus = PlayerPrefs.GetInt("Current Level", 0);
+            Debug.Log("Level Status" + levelstatus);
             if (world.levels.Length > levelstatus)
             {
                 Instantiate(world.levels[levelstatus].Obstacles);
@@ -99,21 +99,32 @@ public class GameManager : MonoBehaviour
             int level = PlayerPrefs.GetInt("Current Level", 0);
             PlayerPrefs.SetInt("Current Level", level + 1);
             PlayerPrefs.SetString("LevelStatus", "LevelComplete");
-
-            if (gameData.saveData.isActive[levelstatus + 1])
+            if(world.levels.Length -1 > levelstatus)
             {
+                if (gameData.saveData.isActive[levelstatus + 1])
+                {
 
-                PlayerPrefs.DeleteKey("Opened Level");
+                    PlayerPrefs.DeleteKey("Opened Level");
+                }
+                else
+                {
+                    if (gameData != null)
+                    {
+                        gameData.saveData.isActive[levelstatus + 1] = true;
+                        gameData.Save();
+                    }
+                    PlayerPrefs.SetInt("Opened Level", levelstatus + 1);
+                }
             }
             else
             {
-                if (gameData != null)
-                {
-                    gameData.saveData.isActive[levelstatus + 1] = true;
-                    gameData.Save();
-                }
-                PlayerPrefs.SetInt("Opened Level", levelstatus + 1);
+                
+
+             PlayerPrefs.DeleteKey("Opened Level");
+                   
             }
+            
+           
 
 
             SceneManager.LoadScene(0);

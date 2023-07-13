@@ -41,18 +41,7 @@ public class RecordTransform : MonoBehaviour
         m_Recorder.TakeSnapshot(Time.deltaTime);
     }
 
-    //void OnDisable()
-    //{
-    //    if (clip == null)
-    //        return;
-
-    //    if (m_Recorder.isRecording)
-    //    {
-    //        // Save the recorded session to the clip.
-    //        m_Recorder.SaveToClip(clip);
-           
-    //    }
-    //}
+ 
 
     public void SaveRecord()
     {
